@@ -34,18 +34,18 @@ var newUser = new User({
     name: "Hermione Granger"
 }); 
 
-newUser.posts.push({
-    title: "How to brew polyjuice potions", 
-    content: "Just kidding, go to potions class to learn it"
-});
+// newUser.posts.push({
+//     title: "How to brew polyjuice potions", 
+//     content: "Just kidding, go to potions class to learn it"
+// });
 
-newUser.save(function(err, user){
-    if(err){
-        console.log(err); 
-    }else{
-        console.log(user);
-    }
-});
+// newUser.save(function(err, user){
+//     if(err){
+//         console.log(err); 
+//     }else{
+//         console.log(user);
+//     }
+// });
 
 // var newPost = new Post({
 //     title: "Reflections on Apples", 
@@ -61,3 +61,20 @@ newUser.save(function(err, user){
 // });
 
 
+User.findOne({name: "Hermione Granger"}, function (err, user){
+    if (err){
+        console.log(err);
+    }else{
+        user.posts.push({
+            title: "3 things I really hate", 
+            content: "Voldemort, Voldemort, Voldemort"
+        });
+        user.save(function(err, user){
+            if(err){
+                console.log(err);
+            }else{
+                console.log(user);
+            }
+        });
+    }
+});
